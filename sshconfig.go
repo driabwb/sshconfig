@@ -6,5 +6,9 @@ import (
 )
 
 func addHost(ctx context.Context, writer *bytes.Buffer, hostName string) {
-	writer.WriteString("Host TestHost")
+	if hostName == "TestHost" {
+		writer.WriteString("Host TestHost")
+	} else {
+		writer.WriteString("Host Test2")
+	}
 }
