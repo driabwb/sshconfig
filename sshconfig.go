@@ -2,13 +2,10 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"io"
 )
 
 func addHost(ctx context.Context, writer io.Writer, hostName string) {
-	if hostName == "TestHost" {
-		writer.Write([]byte("Host TestHost"))
-	} else {
-		writer.Write([]byte("Host Test2"))
-	}
+	writer.Write([]byte(fmt.Sprintf("Host %s", hostName)))
 }
