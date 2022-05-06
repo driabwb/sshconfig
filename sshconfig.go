@@ -7,8 +7,8 @@ import (
 
 func addHost(ctx context.Context, writer io.Writer, hostName string) {
 	if hostName == "TestHost" {
-		writer.WriteString("Host TestHost")
+		writer.Write([]byte("Host TestHost"))
 	} else {
-		writer.WriteString("Host Test2")
+		writer.Write([]byte("Host Test2"))
 	}
 }
