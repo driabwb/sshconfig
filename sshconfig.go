@@ -5,4 +5,6 @@ import (
 	"context"
 )
 
-func addHost(ctx context.Context, writer bytes.Buffer, hostName string) {}
+func addHost(ctx context.Context, writer *bytes.Buffer, hostName string) {
+	writer.WriteString("Host TestHost")
+}
