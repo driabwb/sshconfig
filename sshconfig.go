@@ -1,11 +1,11 @@
 package main
 
 import (
-	"bytes"
 	"context"
+	"io"
 )
 
-func addHost(ctx context.Context, writer *bytes.Buffer, hostName string) {
+func addHost(ctx context.Context, writer io.Writer, hostName string) {
 	if hostName == "TestHost" {
 		writer.WriteString("Host TestHost")
 	} else {
