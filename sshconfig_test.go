@@ -26,9 +26,7 @@ func TestWriteHost(t *testing.T) {
 			t.Errorf("got %s; want %s", got, want)
 		}
 
-		if nil != err {
-			t.Errorf("Expected no error got nil")
-		}
+		assetNoError(t, err)
 	})
 
 	t.Run("Write Test2 host line", func(t *testing.T) {
@@ -43,18 +41,27 @@ func TestWriteHost(t *testing.T) {
 			t.Errorf("got %s; want %s", got, want)
 		}
 
-		if nil != err {
-			t.Errorf("Expected no error got nil")
-		}
+		assetNoError(t, err)
 	})
 
 	t.Run("Return an error if writing fails", func(t *testing.T) {
 
 		got := addHost(context.Background(), badWriter{}, "BadWriterTest")
 
-		if nil == got {
-			t.Errorf("Expected an error got nil")
-		}
+		assetHasError(t, got)
 	})
+}
 
+func assetHasError(t testing.TB, e error) {
+	t.Helper()
+	if nil == e {
+		t.Errorf("Expected an error; got nil")
+	}
+}
+
+func assetNoError(t testing.TB, e error) {
+	t.Helper()
+	if nil != e {
+		t.Errorf("Expected no error; got %s", e.Error())
+	}
 }
