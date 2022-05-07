@@ -52,6 +52,25 @@ func TestWriteHost(t *testing.T) {
 	})
 }
 
+func TestExistingHostInteractions(t *testing.T) {
+	t.Run("Prepends new host to the file", func(t *testing.T) {
+		buf := bytes.NewBufferString("Host Test2")
+
+		err := addHost(context.Background(), buf, "Test3")
+
+		got := buf.String()
+		want := `Host Test3
+
+Host Test2`
+
+		if got != want {
+			t.Errorf("got %s; want %s", got, want)
+		}
+
+		assetNoError(t, err)
+	})
+}
+
 func assetHasError(t testing.TB, e error) {
 	t.Helper()
 	if nil == e {
